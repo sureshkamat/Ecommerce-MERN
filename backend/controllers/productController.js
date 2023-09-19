@@ -6,6 +6,7 @@ const ApiFeatures=require("../utils/apiFeatures")
 
 //create a new product --Admin
 exports.createProduct=catchAsyncError(async (req,res,next)=>{
+    req.body.user=req.user.id;
     const product=await Product.create(req.body);
 
     res.status(200).json({
@@ -17,10 +18,13 @@ exports.createProduct=catchAsyncError(async (req,res,next)=>{
 
 //get all Products
 exports.getAllproducts=catchAsyncError(async (req,res)=>{
-    const apiFeature=new ApiFeatures(Product.find(),req.query).search();
+    const resultPerPage=5;
+    const productCount=await Product.countDocuments();
+    const apiFeature=new ApiFeatures(Product.find(),req.query).search().filter().pagination(resultPerPage);
     const products=await apiFeature.query;
     res.status(200).json({
         success:true,
+        productCount,
         products
     });
 })
