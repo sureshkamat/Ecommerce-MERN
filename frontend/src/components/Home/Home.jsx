@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaMouse } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../action/productAction';
+import { clearError, getProducts } from '../../action/productAction';
 import { Loader } from '../layout/Loader/Loader';
-import { Product } from './Product';
+import { ProductCard } from './ProductCard';
 import './home.css';
 import {useAlert} from 'react-alert';
 export const Home = () => {
@@ -14,7 +14,8 @@ export const Home = () => {
 
   useEffect(() => {
    if(error){
-    return alert.error(error);
+     alert.error(error);
+     dispatch(clearError());
    }
      dispatch(getProducts());
   }, [dispatch,error,alert]);
@@ -35,7 +36,7 @@ export const Home = () => {
     <h2 className='homeHeading'>Featured Products</h2>
     <div className='container' id='container'>
       {products && products.map((product) => (
-        <Product product={product} />
+        <ProductCard product={product} />
       ))}
 
     </div>

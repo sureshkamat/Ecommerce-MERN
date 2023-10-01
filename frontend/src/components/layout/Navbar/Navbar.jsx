@@ -57,7 +57,7 @@ export const Navbar = () => {
             </Center>
 
             <Center gap={10}>
-                <FaSearch />
+            <Link to="/search"><FaSearch /></Link>
                 <FaShoppingCart />
                 <FaUserAlt />
             </Center>
