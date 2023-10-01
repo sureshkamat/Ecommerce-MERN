@@ -93,3 +93,104 @@ export const Navbar = () => {
         </Flex>
     );
 };
+
+
+// import { AccountCircle as AccountCircleIcon, Menu as MenuIcon, Search as SearchIcon, ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
+// import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+// import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import logo from '../../../images/logo.jpeg';
+
+// export const Navbar = () => {
+//     const [anchorEl, setAnchorEl] = useState(null);
+
+//     const handleMenuOpen = (event) => {
+//         setAnchorEl(event.currentTarget);
+//     };
+
+//     const handleMenuClose = () => {
+//         setAnchorEl(null);
+//     };
+
+//     const renderMenu = (
+//         <Menu
+//             anchorEl={anchorEl}
+//             anchorOrigin={{
+//                 vertical: 'top',
+//                 horizontal: 'right',
+//             }}
+//             id="menu-appbar"
+//             keepMounted
+//             transformOrigin={{
+//                 vertical: 'top',
+//                 horizontal: 'right',
+//             }}
+//             open={Boolean(anchorEl)}
+//             onClose={handleMenuClose}
+//         >
+//             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+//             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+//         </Menu>
+//     );
+
+//     return (
+//         <AppBar position="static">
+//             <Toolbar>
+//                 <Link to="/">
+//                     <img src={logo} alt="Surshaa" style={{ width: 100, height: 'auto' }} />
+//                 </Link>
+
+//                 <div style={{ flex: 1 }}></div>
+
+//                 {/* Desktop navigation links */}
+//                 <div style={{ display: 'none', marginRight: 'auto' }}>
+//                     <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+//                         <Typography variant="h6">Home</Typography>
+//                     </Link>
+//                     <Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>
+//                         <Typography variant="h6">Products</Typography>
+//                     </Link>
+//                     <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
+//                         <Typography variant="h6">About</Typography>
+//                     </Link>
+//                     <Link to="/contact" style={{ textDecoration: 'none', color: 'inherit' }}>
+//                         <Typography variant="h6">Contact</Typography>
+//                     </Link>
+//                 </div>
+
+//                 {/* Icons */}
+//                 <div>
+//                     <IconButton aria-label="Search" color="inherit">
+//                         <SearchIcon />
+//                     </IconButton>
+//                     <IconButton aria-label="Shopping Cart" color="inherit">
+//                         <ShoppingCartIcon />
+//                     </IconButton>
+//                     <IconButton
+//                         aria-label="Account"
+//                         color="inherit"
+//                         aria-controls="menu-appbar"
+//                         aria-haspopup="true"
+//                         onClick={handleMenuOpen}
+//                     >
+//                         <AccountCircleIcon />
+//                     </IconButton>
+//                 </div>
+
+//                 {/* Mobile menu icon */}
+//                 <div style={{ display: 'block', marginLeft: 'auto' }}>
+//                     <IconButton
+//                         aria-label="Open menu"
+//                         edge="end"
+//                         color="inherit"
+//                         onClick={toggleMenu}
+//                     >
+//                         <MenuIcon />
+//                     </IconButton>
+//                 </div>
+//             </Toolbar>
+//             {renderMenu}
+//         </AppBar>
+//     );
+// };
+

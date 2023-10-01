@@ -1,38 +1,46 @@
-import React from 'react'
-import {FaMouse} from 'react-icons/fa';
-import './home.css';
-import { Product } from './Product';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-const product={
-  name:"Mens tshirt",
-  images:[{url:"https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1673585389_2625270.jpg?w=360&dpr=1.0"}],
-  price:"3000",
-  _id:"mens"
-}
+import { FaMouse } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../action/productAction';
+import { Loader } from '../layout/Loader/Loader';
+import { Product } from './Product';
+import './home.css';
+import {useAlert} from 'react-alert';
 export const Home = () => {
+  const dispatch = useDispatch();
+  const { loading, products, productsCount, error } = useSelector(state => state.products);
+  const alert=useAlert();
+
+  useEffect(() => {
+   if(error){
+    return alert.error(error);
+   }
+     dispatch(getProducts());
+  }, [dispatch,error,alert]);
   return (
+    <>
+    {loading?<Loader />:
     <>
     <Helmet title="Sursha Lifestyle" />
     <div className="banner">
-        <p>Welcome to Sursha Lifestyle</p>
-        <h1>Find Amazing Products Below</h1>
-        <a href='#container'>
-           <button>
-            Scroll <FaMouse/>
-           </button>
-        </a>
+      <p>Welcome to Sursha Lifestyle</p>
+      <h1>Find Amazing Products Below</h1>
+      <a href='#container'>
+        <button>
+          Scroll <FaMouse />
+        </button>
+      </a>
     </div>
     <h2 className='homeHeading'>Featured Products</h2>
     <div className='container' id='container'>
-      <Product  product={product} />
-      <Product  product={product} />
-      <Product  product={product} />
-      <Product  product={product} />
-      <Product  product={product} />
-      <Product  product={product} />
-      <Product  product={product} />
-      <Product  product={product} />
+      {products && products.map((product) => (
+        <Product product={product} />
+      ))}
+
     </div>
+  </>
+  }
     </>
   )
 }

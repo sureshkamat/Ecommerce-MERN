@@ -16,7 +16,9 @@
 .banner > p {
   font-size: x-large;
 }
-
+.banner>a{
+  text-decoration: none;
+}
 .banner > a > button {
   margin-bottom: 5vmax;
   cursor: pointer;
@@ -32,6 +34,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  
 }
 .banner > a > button:hover {
   color: white;
@@ -73,10 +76,12 @@
   margin: 0.5vmax;
   display: flex;
   justify-content: flex-start;
+  
 }
 .productCard > div > span {
   margin: 0.5vmax;
   font: 300 0.7vmax;
+  text-align: center;
 }
 .productCard > p {
   font-size: 1.8vmax;
