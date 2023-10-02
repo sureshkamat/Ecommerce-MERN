@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     padding: 0.5vmax;
     justify-content: center;
+    margin-left: 10vmax;
 }
 
 .paginationBox{
@@ -21,4 +22,37 @@
       align-items:"center";
       height:"100vh";
       text-align: center;
+}
+
+
+.filterBox{
+    width: 10vmax;
+    position: absolute;
+    top: 15vmax;
+    left:4vmax;
+}
+.categoryBox{
+    padding: 0%;
+}
+.categorylink{
+    list-style: none;
+    color: rgba(0,0,0,0.61);
+    font:400 0.8vmax;
+    margin:0.4vmax;
+    cursor:pointer;
+    transition: all 0.5s;
+}
+.categorylink:hover{
+    color: blue;
+}
+
+@media screen and (max-width:600px) {
+    .filterBox{
+        width: 20vmax;
+        position: static;
+        margin: auto;
+    }
+    .products{
+        margin-left: 0vmax;
+    }
 }
