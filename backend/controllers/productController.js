@@ -15,18 +15,27 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 });
 
 //get all Products
-exports.getAllproducts = catchAsyncError(async (req, res) => {
-  const resultPerPage = 5;
-  const productCount = await Product.countDocuments();
+exports.getAllproducts = catchAsyncError(async (req, res, next) => {
+  const resultPerPage = 8;
+  const productsCount = await Product.countDocuments();
+  const totalPages = Math.ceil(productsCount / resultPerPage);
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter()
     .pagination(resultPerPage);
+    
+  // let products = await apiFeature.query;
+  // let filteredProductCount = products.length;
+
+
   const products = await apiFeature.query;
   res.status(200).json({
     success: true,
-    productCount,
+    productsCount,
     products,
+    resultPerPage,
+    totalPages,
+    
   });
 });
 
@@ -143,23 +152,23 @@ exports.deleteProductReview = catchAsyncError(async (req, res, next) => {
 
   const numOfReviews = reviews.length;
 
-  await Product.findByIdAndUpdate(req.query.productId, {
-    reviews,
-    ratings,
-    numOfReviews,
-  },
-  {
-    new:true,
-    runValidators:true,
-    useFindAndModify:false
-  }
+  await Product.findByIdAndUpdate(
+    req.query.productId,
+    {
+      reviews,
+      ratings,
+      numOfReviews,
+    },
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    }
   );
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      reviews: product.reviews,
-      length: product.reviews.length,
-    });
+  res.status(200).json({
+    success: true,
+    reviews: product.reviews,
+    length: product.reviews.length,
+  });
 });

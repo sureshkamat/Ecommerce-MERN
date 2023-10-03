@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+
 import { FaMouse } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError, getProducts } from '../../action/productAction';
@@ -7,9 +7,10 @@ import { Loader } from '../layout/Loader/Loader';
 import { ProductCard } from './ProductCard';
 import './home.css';
 import {useAlert} from 'react-alert';
+import { MetaData } from '../layout/MetaData';
 export const Home = () => {
   const dispatch = useDispatch();
-  const { loading, products, productsCount, error } = useSelector(state => state.products);
+  const { loading, products, error } = useSelector(state => state.products);
   const alert=useAlert();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export const Home = () => {
     <>
     {loading?<Loader />:
     <>
-    <Helmet title="Sursha Lifestyle" />
+    <MetaData title="Sursha Lifestyle" />
     <div className="banner">
       <p>Welcome to Sursha Lifestyle</p>
       <h1>Find Amazing Products Below</h1>

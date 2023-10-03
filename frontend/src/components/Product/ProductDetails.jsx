@@ -9,6 +9,10 @@ import "./productDetails.css";
 import { ReviewCard } from './ReviewCard';
 import { Loader } from '../layout/Loader/Loader';
 import {useAlert} from 'react-alert';
+import { MetaData } from '../layout/MetaData';
+
+
+
 export const ProductDetails = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -36,6 +40,7 @@ export const ProductDetails = () => {
         <>
             {loading ? (<Loader />) : (
                 <>
+                <MetaData title={`${product.name} --Sursha Lifestyle`} />
                     <div className="productDetails">
                         <div className='left'>
                             <Carousel >
