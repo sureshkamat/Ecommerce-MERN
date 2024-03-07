@@ -8,8 +8,10 @@ import { Loader } from './Loader/Loader'
 import { ProductDetails } from '../Product/ProductDetails'
 import { Search } from '../Product/Search'
 import { LoginSignup } from '../User/LoginSignup'
-
+import { Profile } from '../User/Profile'
+import { useSelector } from 'react-redux'
 export const AllRoutes = () => {
+  const {isAuthenticated}=useSelector(state=>state.user);
   return (
     <Routes>
         <Route path="/" element={<Home/>} />
@@ -21,7 +23,7 @@ export const AllRoutes = () => {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/sad" element={<Loader/>} />
         <Route path="/login" element={<LoginSignup />} />
-        
+        <Route path="/account" element={isAuthenticated?<Profile />:<LoginSignup />} />
     </Routes>
   )
 }
