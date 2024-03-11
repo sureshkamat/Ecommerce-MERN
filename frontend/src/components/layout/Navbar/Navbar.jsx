@@ -4,7 +4,6 @@ import {
     Flex,
     Image,
     Stack,
-    Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 // import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
@@ -71,7 +70,7 @@ export const Navbar = () => {
             <div className='menu'>
                 <Center gap={10}>
                     <Link to="/search"><FaSearch /></Link>
-                    <FaShoppingCart mr={5} />
+                    <Link to="/cart"><FaShoppingCart mr={5} /></Link>
                     {isAuthenticated ? <UserOptions user={user} /> : <Link to="/login"> <FaUserAlt /></Link>}
                 </Center>
             </div>
@@ -98,7 +97,7 @@ export const Navbar = () => {
                             <FaSearch />
                             <ListItemText primary="Search" />
                         </ListItem>
-                        <ListItem button>
+                        <ListItem button component={Link} to="/cart">
                             <FaShoppingCart />
                             <ListItemText primary="Cart" />
                         </ListItem>

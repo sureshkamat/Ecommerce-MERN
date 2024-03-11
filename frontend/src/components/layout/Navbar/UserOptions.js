@@ -1,18 +1,21 @@
-import React, { useState } from "react";
-import "./Navbar.css";
-import SpeedDial from "@mui/material/SpeedDial";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import PersonIcon from "@mui/icons-material/Person";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
-import {useNavigate} from 'react-router-dom';
-import {useAlert} from 'react-alert';
+import React, { useState } from "react";
+import { useAlert } from 'react-alert';
+import { useDispatch ,useSelector} from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { logout } from "../../../action/userAction";
-import { useDispatch } from "react-redux";
+import "./Navbar.css";
 
 
 export const UserOptions = ({ user }) => {
+  const {cartItems}=useSelector((state)=>state.cart);
+
   const [open, setOpen] = useState(false);
   const navigate=useNavigate();
   const alert=useAlert();
@@ -21,7 +24,9 @@ export const UserOptions = ({ user }) => {
   const options = [
     { icon: <ListAltIcon />, name: "Orders" ,func:orders},
     { icon: <PersonIcon />, name: "Profile" ,func:account},
+    { icon: <ShoppingCartIcon style={{color:cartItems.length>0?"tomato":"unset"}}/>, name: `Cart(${cartItems.length})` ,func:cart},
     { icon: <ExitToAppIcon />, name: "LogOut" ,func:logOutUser},
+    
   ];
   if (user.role === "admin") {
     options.unshift({ icon: <DashboardIcon />, name: "Dashboard",func:dashboard });
@@ -40,6 +45,10 @@ alert.success("Logout Successfully");
 function dashboard(){
 navigate('/dashboard');
 }
+function cart(){
+  navigate('/cart');
+  }
+  
 
 
 
@@ -52,6 +61,7 @@ navigate('/dashboard');
         open={open}
         className="speedDial"
         direction="down"
+        
         icon={
           <img
             className="speedDialIcon"
@@ -66,6 +76,7 @@ navigate('/dashboard');
             icon={option.icon}
             tooltipTitle={option.name}
             onClick={option.func}
+            tooltipOpen={window.innerWidth<=600?true:false}
           />
         ))}
       </SpeedDial>

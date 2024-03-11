@@ -2,11 +2,15 @@ import { applyMiddleware, combineReducers, legacy_createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { productDetailReducer, productReducer } from './reducers/productReducer';
-import { userReducer } from './reducers/userReducer';
+import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
+import { cartReducer } from './reducers/cartReducer';
 const reducer=combineReducers({
     products:productReducer,
     productDetails:productDetailReducer,
     user:userReducer,
+    profile:profileReducer,
+    forgotPassword:forgotPasswordReducer,
+    cart:cartReducer,
 })
 
 let initialState={};

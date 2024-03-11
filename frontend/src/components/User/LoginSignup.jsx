@@ -8,14 +8,14 @@ import FaceIcon from '@mui/icons-material/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, register,clearError } from '../../action/userAction';
 import {useAlert} from 'react-alert';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
 
-export const LoginSignup = () => {
+export const LoginSignup = ( ) => {
     const dispatch = useDispatch();
     const alert=useAlert();
     const { loading,isAuthenticated, error } = useSelector(state => state.user);
     const navigate=useNavigate();
-
+    const location = useLocation();
     const loginTab = useRef(null);
     const registerTab = useRef(null);
     const switcherTab = useRef(null);
@@ -62,15 +62,17 @@ export const LoginSignup = () => {
         }
     }
 
+const redirect =location.search ? location.search.split("=")[1] : "/account";
+
     useEffect(()=>{
     if(error){
         alert.error(error);
      dispatch(clearError());
     }
     if(isAuthenticated){
-     navigate('/account')
+     navigate(redirect)
     }
-    },[dispatch,alert,error,isAuthenticated,navigate])
+    },[dispatch,alert,error,isAuthenticated,navigate,redirect])
     const switchTabs = (e, tab) => {
         if (tab === "login") {
             switcherTab.current.classList.add("shiftToNeutral");
