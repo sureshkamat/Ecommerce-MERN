@@ -20,6 +20,8 @@ export const Home = () => {
    }
      dispatch(getProducts());
   }, [dispatch,error,alert]);
+ 
+ 
   return (
     <>
     {loading?<Loader />:

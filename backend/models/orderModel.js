@@ -61,6 +61,7 @@ const OrderSchema = new mongoose.Schema({
   orderStatus: { type: String, required: true, default: "Processing" },
   deliveredAt:Date,
   createdAt: { type: Date, default: Date.now() },
+  
 });
 
 module.exports = mongoose.model("order", OrderSchema);

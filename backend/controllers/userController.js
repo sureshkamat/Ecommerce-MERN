@@ -250,6 +250,10 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
     );
   }
   //we will update avatatr later
+  const imageId = user.avatar.public_id;
+
+  await cloudinary.v2.uploader.destroy(imageId);
+
   await User.deleteOne({ _id: user._id });
 
 

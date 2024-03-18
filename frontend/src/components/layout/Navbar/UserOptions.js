@@ -43,7 +43,7 @@ dispatch(logout ());
 alert.success("Logout Successfully");
 }
 function dashboard(){
-navigate('/dashboard');
+navigate('/admin/dashboard');
 }
 function cart(){
   navigate('/cart');
